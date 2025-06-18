@@ -6,12 +6,25 @@ public class SimpleVersion
     public ushort Minor { get; set; }
     public ushort Build { get; set; }
     public ushort Revision { get; set; }
+
+    public SimpleVersion(ushort major, ushort minor, ushort build, ushort revision)
+    {
+        Major = major;
+        Minor = minor;
+        Build = build;
+        Revision = revision;
+    }
+
+    override public string ToString()
+    {
+        return $"{Major}.{Minor}.{Build}.{Revision}";
+    }
 }
 
 public class PInvoke
 {
     // Extracted from CsWin32.
-    internal partial struct PACKAGE_VERSION
+    private partial struct PACKAGE_VERSION
     {
         internal _Anonymous_e__Union Anonymous;
 
@@ -78,7 +91,7 @@ public class PInvoke
     }
 
     [DllImport("KERNELBASE.dll", ExactSpelling = true), DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
-    internal static extern unsafe int TryCreatePackageDependency(
+    private static extern unsafe int TryCreatePackageDependency(
         nint user,
         char* packageFamilyName,
         PACKAGE_VERSION minVersion,
@@ -88,7 +101,7 @@ public class PInvoke
         CreatePackageDependencyOptions options,
         char** packageDependencyId);
 
-    internal static PACKAGE_VERSION CreatePackageVersion(SimpleVersion version)
+    private static PACKAGE_VERSION CreatePackageVersion(SimpleVersion version)
     {
         return new PACKAGE_VERSION
         {
