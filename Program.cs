@@ -1,7 +1,8 @@
 ﻿using static PInvoke;
 
-var packageFamilyName = "MicrosoftWindows.UfPsPackage_kzq9xh7cr2gpm";
-var packageVersion = new SimpleVersion(2, 0, 0, 0);
+// var packageFamilyName = "MicrosoftWindows.UfPsPackage_kzq9xh7cr2gpm";
+var packageFamilyName = "Microsoft.WindowsTerminal_8wekyb3d8bbwe";
+var packageVersion = new SimpleVersion(1, 22, 11141, 0);
 var registryKey = $"Software\\Microsoft\\UfScripts\\{packageFamilyName}_{packageVersion}";
 
 Console.WriteLine($"Creating package dependency for:");

@@ -130,10 +130,12 @@ public class PInvoke
 
         unsafe
         {
+            var buffer = new char[256];
             fixed (char* pPackageFamilyName = packageFamilyName)
             fixed (char* pLifetimeArtifact = lifetimeArtifact)
+            fixed (char* pBuffer = buffer)
             {
-                char* pPackageDependencyId;
+                char* pPackageDependencyId = pBuffer;
                 int result = TryCreatePackageDependency(
                     nint.Zero, // Use current user
                     pPackageFamilyName,
